@@ -134,6 +134,16 @@
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didTapAccesoryViewAtIndexPath:(NSIndexPath *)indexPath {
+    id object = [self objectForRowAtIndexPath:indexPath];
+    BKCellMapping *cellMapping = [self cellMappingForObject:object];
+    
+    if (nil != cellMapping.onTapAccessoryBlock) {
+        UITableViewCell *cell = [self cellForRowAtIndexPath:indexPath];
+        cellMapping.onTapAccessoryBlock(cell, object, indexPath);
+    }
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -160,7 +170,6 @@
     BKCellMapping *cellMapping = [self cellMappingForObject:object];
     
     if (nil != cellMapping.willDisplayCellBlock) {
-        UITableViewCell *cell = [self cellForRowAtIndexPath:indexPath];
         cellMapping.willDisplayCellBlock(cell, object, indexPath);
     }
 }
@@ -261,7 +270,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     [self commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -271,8 +279,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self didSelectRowAtIndexPath:indexPath];
+    [self tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    [self didTapAccesoryViewAtIndexPath:indexPath];
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
@@ -280,7 +292,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     return [self editingStyleForRowAtIndexPath:indexPath];
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////

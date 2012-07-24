@@ -40,6 +40,7 @@
 @synthesize cellClass = _cellClass;
 @synthesize nib = _nib;
 @synthesize onSelectRowBlock = _onSelectRowBlock;
+@synthesize onTapAccessoryBlock = _onTapAccessoryBlock;
 @synthesize rowHeight = _rowHeight;
 @synthesize rowHeightBlock = _rowHeightBlock;
 @synthesize willDisplayCellBlock = _willDisplayCellBlock;
@@ -128,6 +129,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)onSelectRowWithBlock:(BKTableViewCellSelectionBlock)onSelectRowBlock {
     self.onSelectRowBlock = onSelectRowBlock;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)onTapAccessoryWithBlock:(BKTableViewCellTapAccessoryBlock)onTapAccessoryBlock {
+    self.onTapAccessoryBlock = onTapAccessoryBlock;
 }
 
 

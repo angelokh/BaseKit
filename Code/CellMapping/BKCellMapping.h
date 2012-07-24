@@ -29,6 +29,8 @@
 @property (nonatomic, readonly, strong) NSMutableDictionary *attributeMappings;
 @property (nonatomic, strong) UINib *nib;
 @property (nonatomic, copy) BKTableViewCellSelectionBlock onSelectRowBlock;
+@property (nonatomic, copy) BKTableViewCellTapAccessoryBlock onTapAccessoryBlock;
+
 @property (nonatomic, assign) CGFloat rowHeight;
 @property (nonatomic, copy) BKCellRowHeightBlock rowHeightBlock;
 @property (nonatomic, copy) BKTableViewCellWillDisplayCellBlock willDisplayCellBlock;
@@ -52,6 +54,8 @@
 - (void)rowHeightWithBlock:(BKCellRowHeightBlock)rowHeightBlock;
 
 - (void)onSelectRowWithBlock:(BKTableViewCellSelectionBlock)onSelectRowBlock;
+
+- (void)onTapAccessoryWithBlock:(BKTableViewCellTapAccessoryBlock)onTapAccessoryBlock;
 
 - (void)willDisplayCellWithBlock:(BKTableViewCellWillDisplayCellBlock)willDisplayCellBlock;
 
